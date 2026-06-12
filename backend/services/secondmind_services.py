@@ -64,6 +64,16 @@ class SecondMindService:
         )
 
         return result
+    async def stream_chat(self, query, config):
+
+        async for chunk in self.chatbot.astream(
+        {
+            "messages": query
+        },
+        config=config,
+        stream_mode="messages"
+    ):
+            yield chunk
 
 
 secondmind = SecondMindService()

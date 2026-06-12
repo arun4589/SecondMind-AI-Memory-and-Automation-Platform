@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from backend.services.secondmind_services import secondmind
 from contextlib import asynccontextmanager
 from backend.routes.chat import router as chat_router
+from backend.routes.memory import router as memory_router
 from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
@@ -32,6 +33,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(chat_router)
+app.include_router(memory_router)
 
 @app.get("/health")
 async def health():
